@@ -1,14 +1,19 @@
 import Tag from '../tag';
 import Icons from '../icons';
+import { useState } from 'react';
 import Actions from '../actions';
+import TaskModal from '../taskModal';
 import useTasks from '@/hooks/useTasks';
 import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
 	const { tasks, search, dispatchTasks } = useTasks();
+	const [editableTask, setEditableTask] = useState({});
 
 	function handleEdit(item) {
-		return () => {};
+		return () => {
+			setEditableTask(item);
+		};
 	}
 
 	function handleDelete(id) {
@@ -70,6 +75,14 @@ export default function TaskSection() {
 								No Tasks Found, Please add one!
 							</h1>
 						)}
+						{editableTask.priority ? (
+							<TaskModal
+								mode='edit'
+								task={editableTask}
+								dispatchTasks={dispatchTasks}
+								onClose={() => setEditableTask({})}
+							/>
+						) : null}
 					</div>
 				</div>
 			</div>
