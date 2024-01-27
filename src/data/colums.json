@@ -24,14 +24,14 @@
 		"id": 4,
 		"key": "tags",
 		"name": "Tags",
-		"childClass": "",
+		"childClass": "capitalize",
 		"parentClass": "md:w-[350px]"
 	},
 	{
 		"id": 5,
 		"key": "priority",
 		"name": "Priority",
-		"childClass": "text-center",
+		"childClass": "text-center capitalize",
 		"parentClass": "md:w-[100px]"
 	},
 	{

@@ -1,3 +1,4 @@
+import Tag from '../tag';
 import Icons from '../icons';
 import Actions from '../actions';
 import tasks from '@/data/tasks.json';
@@ -18,24 +19,25 @@ export default function TaskSection() {
 							{tasks.map(item => (
 								<Row key={item.id}>
 									<Cell className={columns[0].childClass}>
-										<div>
-											<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
-										</div>
+										<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
 									</Cell>
-									<Cell className={columns[1].childClass}>
-										<div>{item.description}</div>
-									</Cell>
-									<Cell className={columns[2].childClass}>
-										<div>{}</div>
-									</Cell>
+									<Cell className={columns[1].childClass}>{item.title}</Cell>
+									<Cell className={columns[2].childClass}>{item.description}</Cell>
 									<Cell className={columns[3].childClass}>
-										<div>{}</div>
+										<ul className='flex justify-center gap-1.5 flex-wrap'>
+											{item.tags.map((tv, ti) => (
+												<li key={tv}>
+													<Tag index={ti} name={tv} />
+												</li>
+											))}
+										</ul>
 									</Cell>
-									<Cell className={columns[4].childClass}>
-										<div>{}</div>
-									</Cell>
+									<Cell className={columns[4].childClass}>{item.priority}</Cell>
 									<Cell className={columns[5].childClass}>
-										<div>{}</div>
+										<div className='flex items-center justify-center space-x-3'>
+											<button className='text-red-500'>Delete</button>
+											<button className='text-blue-500'>Edit</button>
+										</div>
 									</Cell>
 								</Row>
 							))}
