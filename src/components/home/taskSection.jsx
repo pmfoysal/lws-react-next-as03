@@ -5,7 +5,9 @@ import useTasks from '@/hooks/useTasks';
 import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
-	const { tasks } = useTasks();
+	const { tasks, search } = useTasks();
+
+	const filteredTasks = tasks.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
 
 	return (
 		<section className='mb-20' id='tasks'>
@@ -16,9 +18,9 @@ export default function TaskSection() {
 						<Actions />
 					</div>
 					<div className='overflow-auto'>
-						{tasks.length ? (
+						{filteredTasks.length ? (
 							<Table>
-								{tasks.map(item => (
+								{filteredTasks.map(item => (
 									<Row key={item.id}>
 										<Cell>
 											<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
