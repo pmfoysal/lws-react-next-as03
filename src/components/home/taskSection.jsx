@@ -2,7 +2,6 @@ import Tag from '../tag';
 import Icons from '../icons';
 import Actions from '../actions';
 import tasks from '@/data/tasks.json';
-import columns from '@/data/columns.json';
 import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
@@ -18,12 +17,12 @@ export default function TaskSection() {
 						<Table>
 							{tasks.map(item => (
 								<Row key={item.id}>
-									<Cell className={columns[0].childClass}>
+									<Cell>
 										<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
 									</Cell>
-									<Cell className={columns[1].childClass}>{item.title}</Cell>
-									<Cell className={columns[2].childClass}>{item.description}</Cell>
-									<Cell className={columns[3].childClass}>
+									<Cell>{item.title}</Cell>
+									<Cell>{item.description}</Cell>
+									<Cell className='capitalize'>
 										<ul className='flex justify-center gap-1.5 flex-wrap'>
 											{item.tags.map((tv, ti) => (
 												<li key={tv}>
@@ -32,8 +31,8 @@ export default function TaskSection() {
 											))}
 										</ul>
 									</Cell>
-									<Cell className={columns[4].childClass}>{item.priority}</Cell>
-									<Cell className={columns[5].childClass}>
+									<Cell className='text-center capitalize'>{item.priority}</Cell>
+									<Cell>
 										<div className='flex items-center justify-center space-x-3'>
 											<button className='text-red-500'>Delete</button>
 											<button className='text-blue-500'>Edit</button>
