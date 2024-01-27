@@ -1,3 +1,4 @@
+import Button from '../button';
 import Search from '../search';
 
 export default function TaskSection() {
@@ -9,8 +10,8 @@ export default function TaskSection() {
 						<h2 className='text-2xl font-semibold max-sm:mb-4'>Your Tasks</h2>
 						<div className='flex items-center space-x-5'>
 							<Search />
-							<button className='rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold'>Add Task</button>
-							<button className='rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold'>Delete All</button>
+							<Button color='bg-blue-500' />
+							<Button color='bg-red-500' />
 						</div>
 					</div>
 					<div className='overflow-auto'>
