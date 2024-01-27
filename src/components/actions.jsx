@@ -13,7 +13,12 @@ export default function Actions() {
 	}
 
 	function handleDeleteAll() {
-		dispatchTasks({ type: 'deletedAll' });
+		const isConfirmed = confirm(
+			`Warning: Deleting everything is like pressing the 'self-destruct' button in a sci-fi movie, but with more virtual explosions and fewer epic spaceship battles.`
+		);
+		if (isConfirmed) {
+			dispatchTasks({ type: 'deletedAll' });
+		}
 	}
 
 	return (
