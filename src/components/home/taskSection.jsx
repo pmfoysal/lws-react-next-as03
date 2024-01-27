@@ -1,5 +1,8 @@
-import Table from '../table';
+import Icons from '../icons';
 import Actions from '../actions';
+import tasks from '@/data/tasks.json';
+import columns from '@/data/columns.json';
+import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
 	return (
@@ -11,7 +14,32 @@ export default function TaskSection() {
 						<Actions />
 					</div>
 					<div className='overflow-auto'>
-						<Table />
+						<Table headers={columns}>
+							{tasks.map(item => (
+								<Row key={item.id}>
+									<Cell className={columns[0].childClass}>
+										<div>
+											<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
+										</div>
+									</Cell>
+									<Cell className={columns[1].childClass}>
+										<div>{item.description}</div>
+									</Cell>
+									<Cell className={columns[2].childClass}>
+										<div>{}</div>
+									</Cell>
+									<Cell className={columns[3].childClass}>
+										<div>{}</div>
+									</Cell>
+									<Cell className={columns[4].childClass}>
+										<div>{}</div>
+									</Cell>
+									<Cell className={columns[5].childClass}>
+										<div>{}</div>
+									</Cell>
+								</Row>
+							))}
+						</Table>
 					</div>
 				</div>
 			</div>
