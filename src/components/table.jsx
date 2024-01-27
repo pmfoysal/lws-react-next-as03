@@ -17,7 +17,11 @@ export default function Table({ children }) {
 }
 
 export function Row({ children }) {
-	return <tr className='border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2'>{children}</tr>;
+	return (
+		<tr className='border-b border-[#2E3443] last:border-none [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2'>
+			{children}
+		</tr>
+	);
 }
 
 export function Cell({ children, className }) {

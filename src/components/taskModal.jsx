@@ -1,7 +1,10 @@
 import Button from './button';
 import { useState } from 'react';
+import useTasks from '@/hooks/useTasks';
 
 export default function TaskModal({ mode, task, onClose }) {
+	const { dispatchTasks } = useTasks();
+
 	const [title, setTitle] = useState(task?.title || '');
 	const [tags, setTags] = useState(task?.tags?.join(', ') || '');
 	const [priority, setPriority] = useState(task?.priority || '');
@@ -15,15 +18,50 @@ export default function TaskModal({ mode, task, onClose }) {
 	});
 
 	function handleChange(key, setter) {
-		return e => {
-			setter(e.target.value);
+		return event => {
+			setter(event.target.value);
 			setErrors(prev => ({ ...prev, [key]: false }));
 		};
 	}
 
+	function isValid() {
+		const newErrors = { ...errors };
+		if (!tags) newErrors.tags = true;
+		if (!title) newErrors.title = true;
+		if (!priority) newErrors.priority = true;
+		if (!description) newErrors.description = true;
+		setErrors(newErrors);
+		return Object.values(newErrors).every(item => item === false);
+	}
+
+	function handleTaskAdd() {
+		dispatchTasks({
+			type: 'added',
+			payload: { title, description, tags: tags.split(',').filter(Boolean), priority },
+		});
+	}
+
+	function handleTaskEdit() {
+		dispatchTasks({
+			type: 'edited',
+			payload: { id: task.id, title, description, tags: tags.split(',').filter(Boolean), priority },
+		});
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault();
+		if (isValid()) {
+			if (mode === 'add') handleTaskAdd();
+			else handleTaskEdit();
+			onClose();
+		}
+	}
+
 	return (
 		<div className='modal'>
-			<form className='mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11'>
+			<form
+				className='mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11'
+				onSubmit={handleSubmit}>
 				<h2 className='mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]'>Add New Task</h2>
 				<div className='space-y-9 text-white lg:space-y-10'>
 					<div className='space-y-2 lg:space-y-3'>

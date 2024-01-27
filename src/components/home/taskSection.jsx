@@ -1,10 +1,12 @@
 import Tag from '../tag';
 import Icons from '../icons';
 import Actions from '../actions';
-import tasks from '@/data/tasks.json';
+import useTasks from '@/hooks/useTasks';
 import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
+	const { tasks } = useTasks();
+
 	return (
 		<section className='mb-20' id='tasks'>
 			<div className='container'>

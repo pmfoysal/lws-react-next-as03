@@ -3,7 +3,7 @@ import getId from '@/utilities/getId';
 export default function tasksReducer(tasks, action) {
 	switch (action.type) {
 		case 'added': {
-			return [...tasks, { id: getId(tasks), ...action.payload }];
+			return [...tasks, { id: getId(tasks), isFavourite: false, ...action.payload }];
 		}
 		case 'edited': {
 			return tasks.map(item => {
