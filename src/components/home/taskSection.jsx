@@ -15,7 +15,7 @@ export default function TaskSection() {
 						<Actions />
 					</div>
 					<div className='overflow-auto'>
-						<Table headers={columns}>
+						<Table>
 							{tasks.map(item => (
 								<Row key={item.id}>
 									<Cell className={columns[0].childClass}>

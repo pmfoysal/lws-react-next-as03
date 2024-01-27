@@ -1,8 +1,8 @@
 [
-	{ "back": "#00dddd", "front": "#000000" },
-	{ "back": "#ff7f50", "front": "#000000" },
-	{ "back": "#6495ed", "front": "#000000" },
-	{ "back": "#008b8b", "front": "#ffffff" },
-	{ "back": "#556b2f", "front": "#ffffff" },
-	{ "back": "#7b68ee", "front": "#ffffff" }
+	{ "back": "bg-[#00dddd]", "front": "text-[#000000]" },
+	{ "back": "bg-[#ff7f50]", "front": "text-[#000000]" },
+	{ "back": "bg-[#6495ed]", "front": "text-[#000000]" },
+	{ "back": "bg-[#008b8b]", "front": "text-[#ffffff]" },
+	{ "back": "bg-[#556b2f]", "front": "text-[#ffffff]" },
+	{ "back": "bg-[#7b68ee]", "front": "text-[#ffffff]" }
 ]
