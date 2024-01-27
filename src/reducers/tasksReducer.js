@@ -14,6 +14,9 @@ export default function tasksReducer(tasks, action) {
 		case 'deleted': {
 			return tasks.filter(item => item.id !== action.payload.id);
 		}
+		case 'deletedAll': {
+			return [];
+		}
 		default: {
 			throw new Error(`No action matched with ${action.type}`);
 		}

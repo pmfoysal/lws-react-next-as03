@@ -1,10 +1,7 @@
 import Button from './button';
 import { useState } from 'react';
-import useTasks from '@/hooks/useTasks';
 
-export default function TaskModal({ mode, task, onClose }) {
-	const { dispatchTasks } = useTasks();
-
+export default function TaskModal({ mode, task, onClose, dispatchTasks }) {
 	const [title, setTitle] = useState(task?.title || '');
 	const [tags, setTags] = useState(task?.tags?.join(', ') || '');
 	const [priority, setPriority] = useState(task?.priority || '');
