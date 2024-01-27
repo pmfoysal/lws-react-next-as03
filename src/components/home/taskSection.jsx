@@ -16,6 +16,12 @@ export default function TaskSection() {
 		};
 	}
 
+	function handleFavourite(item) {
+		return () => {
+			dispatchTasks({ type: 'edited', payload: { ...item, isFavourite: !item.isFavourite } });
+		};
+	}
+
 	function handleDelete(id) {
 		return () => {
 			const isConfirmed = confirm(
@@ -43,7 +49,9 @@ export default function TaskSection() {
 								{filteredTasks.map(item => (
 									<Row key={item.id}>
 										<Cell>
-											<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
+											<div onClick={handleFavourite(item)} className='cursor-pointer'>
+												<Icons name={!item.isFavourite ? 'star' : 'star-fill'} />
+											</div>
 										</Cell>
 										<Cell>{item.title}</Cell>
 										<Cell>{item.description}</Cell>
