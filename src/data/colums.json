@@ -4,41 +4,41 @@
 		"key": "",
 		"name": "",
 		"childClass": "",
-		"parentClass": ""
+		"parentClass": "w-[48px]"
 	},
 	{
 		"id": 2,
-		"key": "",
-		"name": "",
+		"key": "title",
+		"name": "Title",
 		"childClass": "",
-		"parentClass": ""
+		"parentClass": "w-[300px]"
 	},
 	{
 		"id": 3,
-		"key": "",
-		"name": "",
+		"key": "description",
+		"name": "Description",
 		"childClass": "",
-		"parentClass": ""
+		"parentClass": "w-full"
 	},
 	{
 		"id": 4,
-		"key": "",
-		"name": "",
+		"key": "tags",
+		"name": "Tags",
 		"childClass": "",
-		"parentClass": ""
+		"parentClass": "md:w-[350px]"
 	},
 	{
 		"id": 5,
-		"key": "",
-		"name": "",
-		"childClass": "",
-		"parentClass": ""
+		"key": "priority",
+		"name": "Priority",
+		"childClass": "text-center",
+		"parentClass": "md:w-[100px]"
 	},
 	{
 		"id": 6,
 		"key": "",
 		"name": "",
 		"childClass": "",
-		"parentClass": ""
+		"parentClass": "md:w-[100px]"
 	}
 ]
