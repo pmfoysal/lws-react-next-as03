@@ -5,7 +5,22 @@ import useTasks from '@/hooks/useTasks';
 import Table, { Cell, Row } from '../table';
 
 export default function TaskSection() {
-	const { tasks, search } = useTasks();
+	const { tasks, search, dispatchTasks } = useTasks();
+
+	function handleEdit(item) {
+		return () => {};
+	}
+
+	function handleDelete(id) {
+		return () => {
+			const isConfirmed = confirm(
+				`Warning: Deleting task is like pressing the 'self-destruct' button in a sci-fi movie, but with more virtual explosions and fewer epic spaceship battles.`
+			);
+			if (isConfirmed) {
+				dispatchTasks({ type: 'deleted', payload: { id } });
+			}
+		};
+	}
 
 	const filteredTasks = tasks.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
 
@@ -39,8 +54,12 @@ export default function TaskSection() {
 										<Cell className='text-center capitalize'>{item.priority}</Cell>
 										<Cell>
 											<div className='flex items-center justify-center space-x-3'>
-												<button className='text-red-500'>Delete</button>
-												<button className='text-blue-500'>Edit</button>
+												<button className='text-red-500' onClick={handleDelete(item.id)}>
+													Delete
+												</button>
+												<button className='text-blue-500' onClick={handleEdit(item)}>
+													Edit
+												</button>
 											</div>
 										</Cell>
 									</Row>
