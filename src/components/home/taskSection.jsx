@@ -22,7 +22,7 @@ export default function TaskSection() {
 									</Cell>
 									<Cell>{item.title}</Cell>
 									<Cell>{item.description}</Cell>
-									<Cell className='capitalize'>
+									<Cell>
 										<ul className='flex justify-center gap-1.5 flex-wrap'>
 											{item.tags.map((tv, ti) => (
 												<li key={tv}>

@@ -1,4 +1,26 @@
+import Button from './button';
+import { useState } from 'react';
+
 export default function TaskModal({ mode, task, onClose }) {
+	const [title, setTitle] = useState(task?.title || '');
+	const [tags, setTags] = useState(task?.tags?.join(', ') || '');
+	const [priority, setPriority] = useState(task?.priority || '');
+	const [description, setDescription] = useState(task?.description || '');
+
+	const [errors, setErrors] = useState({
+		title: false,
+		description: false,
+		tags: false,
+		priority: false,
+	});
+
+	function handleChange(key, setter) {
+		return e => {
+			setter(e.target.value);
+			setErrors(prev => ({ ...prev, [key]: false }));
+		};
+	}
+
 	return (
 		<div className='modal'>
 			<form className='mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11'>
@@ -11,8 +33,10 @@ export default function TaskModal({ mode, task, onClose }) {
 							type='text'
 							name='title'
 							id='title'
-							required
+							value={title}
+							onChange={handleChange('title', setTitle)}
 						/>
+						<Err isActive={errors.title} name='title' />
 					</div>
 					<div className='space-y-2 lg:space-y-3'>
 						<label htmlFor='description'>Description</label>
@@ -21,7 +45,9 @@ export default function TaskModal({ mode, task, onClose }) {
 							type='text'
 							name='description'
 							id='description'
-							required></textarea>
+							value={description}
+							onChange={handleChange('description', setDescription)}></textarea>
+						<Err isActive={errors.description} name='description' />
 					</div>
 					<div className='grid-cols-2 gap-x-4 max-md:space-y-9 md:grid lg:gap-x-10 xl:gap-x-20'>
 						<div className='space-y-2 lg:space-y-3'>
@@ -31,8 +57,10 @@ export default function TaskModal({ mode, task, onClose }) {
 								type='text'
 								name='tags'
 								id='tags'
-								required
+								value={tags}
+								onChange={handleChange('tags', setTags)}
 							/>
+							<Err isActive={errors.tags} name='tags' />
 						</div>
 						<div className='space-y-2 lg:space-y-3'>
 							<label htmlFor='priority'>Priority</label>
@@ -40,23 +68,34 @@ export default function TaskModal({ mode, task, onClose }) {
 								className='block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5'
 								name='priority'
 								id='priority'
-								required>
+								value={priority}
+								onChange={handleChange('priority', setPriority)}>
 								<option value=''>Select Priority</option>
 								<option value='low'>Low</option>
 								<option value='medium'>Medium</option>
 								<option value='high'>High</option>
 							</select>
+							<Err isActive={errors.priority} name='priority' />
 						</div>
 					</div>
 				</div>
-				<div className='mt-16 flex justify-center lg:mt-20'>
+				<div className='mt-16 flex justify-center lg:mt-20 gap-4'>
+					<Button color='danger' name='Close Modal' onClick={onClose} />
 					<button
 						type='submit'
 						className='rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80'>
-						Create new Task
+						Create Task
 					</button>
 				</div>
 			</form>
 		</div>
 	);
+}
+
+function Err({ name, isActive }) {
+	return isActive ? (
+		<p className='text-red-400 text-[13px] font-normal !mt-1 leading-[1.25]'>
+			we can&apos;t locate your {name}! Be a legend and add one ¬_¬
+		</p>
+	) : null;
 }

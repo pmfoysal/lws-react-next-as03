@@ -4,7 +4,7 @@ import { useState } from 'react';
 import TaskModal from './taskModal';
 
 export default function Actions() {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className='flex items-center space-x-5'>
