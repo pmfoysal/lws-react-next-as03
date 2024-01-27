@@ -1,11 +1,15 @@
 import tasksData from '@/data/tasks.json';
-import { createContext, useState } from 'react';
+import { createContext, useReducer } from 'react';
+import tasksReducer from '@/reducers/tasksReducer';
+import searchReducer from '@/reducers/searchReducer';
 
 export const TasksContext = createContext(null);
 
 export default function TasksProvider({ children }) {
-	const [search, setSearch] = useState('');
-	const [tasks, setTasks] = useState(tasksData);
+	const [search, dispatchSearch] = useReducer(searchReducer, '');
+	const [tasks, dispatchTasks] = useReducer(tasksReducer, tasksData);
 
-	return <TasksContext.Provider value={{ search, setSearch, tasks, setTasks }}>{children}</TasksContext.Provider>;
+	return (
+		<TasksContext.Provider value={{ search, dispatchSearch, tasks, dispatchTasks }}>{children}</TasksContext.Provider>
+	);
 }
